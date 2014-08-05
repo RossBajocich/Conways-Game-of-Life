@@ -2,7 +2,9 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 
 import utilities.Keyboard;
 import utilities.Mouse;
@@ -22,7 +24,7 @@ public class GameLoop implements Runnable {
 		this.k = k;
 		width = rm.parent.getWidth();
 		height = rm.parent.getHeight();
-		g = new Game(width, height,100,100);
+		g = new Game(width, height, 100, 100);
 		xPixels = width / g.getXMax();
 		yPixels = height / g.getYMax();
 		System.out.println("xMAX: " + g.getXMax() + ", yMAX: " + g.getYMax());
@@ -32,10 +34,10 @@ public class GameLoop implements Runnable {
 		this.m = m;
 	}
 
-	public Game getGame(){
+	public Game getGame() {
 		return g;
 	}
-	
+
 	public boolean isRunning() {
 		return running;
 	}
@@ -63,9 +65,13 @@ public class GameLoop implements Runnable {
 			// game logic
 			rm.reset();
 			Graphics gr = rm.getGraphics();
-
+			PointerInfo a = MouseInfo.getPointerInfo();
+			Point b = a.getLocation();
+			System.out.println("x: " + b.x + "\ty: " + b.y);
 			drawBoard(gr);
-			g.life();
+			if (g.isRunning()) {
+				g.life();
+			}
 			gr.dispose();
 			// System.out.println("ran!")
 			// end game logic

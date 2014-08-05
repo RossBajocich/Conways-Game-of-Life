@@ -12,7 +12,6 @@ public class Window extends JFrame {
 	private static GameLoop g;
 	private static Keyboard k;
 	private static Mouse m;
-	private static Thread game, render;
 
 	public Window(String title, int width, int height) {
 		super(title);
@@ -27,11 +26,8 @@ public class Window extends JFrame {
 		setResizable(false);
 		rm = new RenderManger(this);
 		g = new GameLoop(rm, k, m);
-		game = new Thread(g, "Game");
-		render = new Thread(rm, "Render");
-		m = new Mouse(g);
+		m = new Mouse(g.getGame());
 		addMouseListener(m);
-
 	}
 
 	public void paint(Graphics g) {
