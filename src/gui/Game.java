@@ -69,6 +69,7 @@ public class Game {
 				d[x][y] = t[x][y];
 			}
 		}
+		running = true;
 	}
 
 	public void set(int x, int y, int val) {

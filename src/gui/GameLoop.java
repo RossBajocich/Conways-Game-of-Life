@@ -67,13 +67,13 @@ public class GameLoop implements Runnable {
 			Graphics gr = rm.getGraphics();
 			PointerInfo a = MouseInfo.getPointerInfo();
 			Point b = a.getLocation();
-			System.out.println("x: " + b.x + "\ty: " + b.y);
 			drawBoard(gr);
 			if (g.isRunning()) {
+				System.out.println("ran!");
 				g.life();
 			}
 			gr.dispose();
-			// System.out.println("ran!")
+			
 			// end game logic
 
 			end = System.currentTimeMillis();
